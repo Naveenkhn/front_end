@@ -4,6 +4,7 @@
 variable declaration:
 ---------------------
 var test = "string";
+Just like in python, variables are passed by reference.
 
 semi colon at the end of line is optional.
 
@@ -128,12 +129,60 @@ Comparing var, let and const
 'var' for variable declaration makes the variable usage lenient.
 1. allows usage before declaration line and initialisation
 2. allows re-declaration of same variable.
+3. Not strict about global and local scope.
 
 'let' and 'const' makes usage of variables strict
 if variable is declared using 'let', it cant be used before the declaration line, otherwise throws error.
 but it allows usage without initialisation.
-
+Also they make scope local to where its defined.
 if variable is declared using 'const', it has to be initialised immediately and cant be used before declaration and cant be reassigned.
+
+Object Oriented Programming principles
+---------------------------------------
+The Benefits of OOP
+Allows you to write modular code,
+Makes your code more flexible and
+Makes your code reusable.
+
+Classes
+-------
+Syntax of class definition is similar to c++. 
+No semi colon at the end.
+Name of constructor is "constructor" itself unlike in c++ where it is class name itself.
+
+class Train {
+    constructor(color, lightsOn) {
+        this.color = color;
+        this.lightsOn = lightsOn;
+    }
+}
+
+To create a class variable
+var myFirstTrain = new Train('red', false);
+
+To get the prototype, you'll be using JavaScript's built-in Object.getPrototypeOf() method, and passing it this object
+ 
+To inherit from one class to a new sub-class, JavaScript provides the extends keyword, which works as follows:
+
+class HighSpeedTrain extends Train {
+}
+
+Again, you can start by defining its constructor function:
+class HighSpeedTrain extends Train {
+    constructor(passengers, highSpeedOn, color, lightsOn) {
+        super(color, lightsOn);
+        this.passengers = passengers;
+        this.highSpeedOn = highSpeedOn;
+    }
+}
+
+In JavaScript classes, super is used to specify what property gets inherited from the super-class in the sub-class.
+
+To call base class methods, here they use super similar to class::scope_resolution operator in c++
+
+Default Parameters
+------------------
+Syntax similar to c++
 
 
 

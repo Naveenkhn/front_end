@@ -1,0 +1,62 @@
+# Javascript basics
+====================
+
+variable declaration:
+---------------------
+var test = "string";
+
+semi colon at the end of line is optional.
+
+7 basic data_types:
+-------------------
+string, number, boolean, BigInt, null, undefined and
+
+if, else if, switch:
+--------------------
+syntax is similar to c++
+
+for, while loop:
+----------------
+syntax similar to c++
+
+Arrays:
+-------
+declaration and usage is similar to c++j
+var num_array = [1, 2, 3, 4];
+
+Functions:
+----------
+syntax:
+function func_name(params)
+{
+....
+}
+JS functions don't return any values.
+
+Object literals and the dot notation:
+-------------------------------------
+One of the most common ways of building an object in JavaScript is using the object literal syntax: {}.
+
+It essentially consists of two steps: 
+
+1. Declaring a new variable and assigning an object literal to it - in other words, this: var assistantManager = {} 
+2. Assigning the values to each of the object's keys, using the assignment operator, =
+
+Notice that it's very easy to build any kind of an object in JavaScript using this example syntax.
+
+For example, here's a table object:
+var table = {
+    legs: 3,
+    color: "brown",
+    priceUSD: 100,
+}
+
+To access the table object, I can simply console log the entire object:  
+console.log(table);//display the object in the developer console
+
+The returned value is the entire table object:  
+{legs: 3, color: 'brown', priceUSD: 100}
+
+Additionally, I can console log any individual property, like this:  
+console.log(table.color); // 'brown'
+

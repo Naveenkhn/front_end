@@ -6,6 +6,9 @@ variable declaration:
 var test = "string";
 Just like in python, variables are passed by reference.
 
+**Trying to copy a variable value into a new variable does copy by reference. Hence if you change one variable it reflects on the other variable too.
+Hence it requires special technique to create new variable with same data as existing one. (example: spread operator (...))
+
 semi colon at the end of line is optional.
 
 7 basic data_types:
@@ -184,5 +187,221 @@ Default Parameters
 ------------------
 Syntax similar to c++
 
+De-structuring arrays and objects
+---------------------------------
+Copying data from existing properties from objects and arrays
 
+let {PI} = Math;
+console.log(PI);
 
+It is same as below code:
+let PIE = Math.PI;
+console.log(PIE);
+
+Object.create()
+----------------
+The Object.create() static method creates a new object, using an existing object as the prototype of the newly created object.
+
+const person = {
+  isHuman: false,
+  printIntroduction: function() {
+    console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
+  }
+};
+
+const me = Object.create(person);
+
+me.name = 'Matthew'; // "name" is a property set on "me", but not on "person"
+me.isHuman = true; // Inherited properties can be overwritten
+
+me.printIntroduction();
+// Expected output: "My name is Matthew. Am I human? true"
+
+for...of and for...in
+---------------------
+The for...of statement executes a loop that operates on a sequence of values sourced from an iterable object. Iterable objects include instances of built-ins such as Array, String, TypedArray, Map, Set, NodeList (and other DOM collections), as well as the arguments object, generators produced by generator functions, and user-defined iterables.
+
+Syntax:
+for (variable of iterable)
+  statement
+
+for of loop cannot work on an object directly, since an object is not iterable. For example:
+const car = {
+    speed: 100,
+    color: "blue"
+}
+
+for(prop of car) {      // Uncaught TypeError: car is not iterable
+    console.log(prop) 
+}
+
+The for...in statement iterates over all enumerable string properties of an object (ignoring properties keyed by symbols), including inherited enumerable properties.
+
+Syntax:
+for (variable in object)
+  statement
+
+In JavaScript for in loops, iterate over the properties of the object and its prototype. While for of loops do this only for the objects' properties.
+
+Object.keys(), Object.values(), Object.entries()
+-------------------------------------------------
+The Object.keys() static method returns an array of a given object's own enumerable string-keyed property names.
+const car2 = {
+    speed: 200,
+    color: "red"
+}
+console.log(Object.keys(car2)); // ['speed','color']
+
+The Object.values() static method returns an array of a given object's own enumerable string-keyed property values.
+const car3 = {
+    speed: 300,
+    color: "yellow"
+}
+console.log(Object.values(car3)); // [300, 'yellow']
+
+The Object.entries() static method returns an array of a given object's own enumerable string-keyed property key-value pairs.
+const car4 = {
+    speed: 400,
+    color: 'magenta'
+}
+console.log(Object.entries(car4)); //[ ['speed', 400], ['color', 'magenta'] ]
+
+Template literals:
+------------------
+Template literals are an alternative way of working with strings, which was introduced in the ES6 addition to the JavaScript language.
+
+Up until ES6, the only way to build strings in JavaScript was to delimit them in either single quotes or double quotes:
+'Hello, World!'
+"Hello, World!"
+
+Alongside the previous ways to build strings, ES6 introduced the use of backtick characters as delimiters:  
+`Hello, World!`
+
+Advantages:
+variable interpolation: 
+let greet = "Hello";
+let place = "World";
+console.log(`${greet} ${place} !`) //display both variables using template literals
+
+ In other words, in ES5, the above example would have to be written as follows:  
+console.log(greet + " " + place + "!"); //display both variables without using template literals
+
+Besides variable interpolation, template strings can span multiple lines.
+`Hello,
+World
+!
+`
+Additionally, the reason why it's possible to interpolate variables in template literals is because this syntax actually allows for expression evaluation. 
+//it's possible to perform arithmetic operation inside a template literal expression
+console.log(`${1 + 1 + 1 + 1 + 1} stars!`) 
+
+With template literals you don't need to worry about the limitations of using single and double quotes.
+
+The forEach() method
+--------------------
+Arrays in JavaScript come with a handy method that allows you to loop over each of their members. 
+
+To explain the syntax, the forEach() method accepts a function that will work on each array item. That function's first parameter is the current array item itself, and the second (optional) parameter is the index.
+
+Very often, the function that the forEach() method needs to use is passed in directly into the method call, like this:
+
+const veggies = ['onion', 'garlic', 'potato'];
+veggies.forEach( function(veggie, index) {
+    console.log(`${index}. ${fruit}`);
+});
+
+The filter() method
+-------------------
+Another very useful method on the array is the filter() method. It filters your arrays based on a specific test. Those array items that pass the test are returned.
+
+const nums = [0,10,20,30,40,50];
+nums.filter( function(num) {
+    return num > 20;
+})
+
+Here's the returned array value:  
+[30,40,50]
+
+The map method
+---------------
+This method is used to map each array item over to another array's item, based on whatever work is performed inside the function that is passed-in to the map as a parameter. 
+
+[0,10,20,30,40,50].map( function(num) {
+    return num / 10
+})
+
+The return value from the above code is:  
+[0,1,2,3,4,5]
+
+Working with Maps in JavaScript
+-------------------------------
+To make a new Map, you can use the Map constructor:
+new Map();
+
+For example:
+let bestBoxers = new Map();
+bestBoxers.set(1, "The Champion");
+bestBoxers.set(2, "The Runner-up");
+bestBoxers.set(3, "The third place");
+
+console.log(bestBoxers);
+
+Here's the console output:  
+Map(3) {1 => 'The Champion', 2 => 'The Runner-up', 3 => 'The third place'}
+
+To get a specific value, you need to use the get() method. For example:  
+bestBoxers.get(1); // 'The Champion'
+
+Working with Sets in JavaScript
+--------------------------------
+Set is similar to array except it only allows unique elements.
+
+To build a new set, you can use the Set constructor:
+new Set();
+
+The Set constructor can, for example, accept an array.
+This means that we can use it to quickly filter an array for unique members.
+
+const repetitiveFruits = ['apple','pear','apple','pear','plum', 'apple'];
+const uniqueFruits = new Set(repetitiveFruits);
+console.log(uniqueFruits);
+
+The above code outputs the following in the console:  
+{'apple', 'pear', 'plum'}
+
+Using Spread and Rest
+---------------------
+Join arrays, objects using the rest operator
+
+const fruits = ['apple', 'pear', 'plum']
+const berries = ['blueberry', 'strawberry']
+const fruitsAndBerries = [...fruits, ...berries] // concatenate
+console.log(fruitsAndBerries); // outputs a single array
+
+['apple', 'pear', 'plum', 'blueberry', 'strawberry']
+
+Add new members to arrays without using the push() method
+Here's how to use the spread operator to easily add one or more members to an existing array:
+
+let veggies = ['onion', 'parsley'];
+veggies = [...veggies, 'carrot', 'beetroot'];
+console.log(veggies);
+
+Here's the output:
+['onion', 'parsley', 'carrot', 'beetroot']
+
+Convert a string to an array using the spread operator
+Given a string, it's easy to spread it out into separate array items:
+
+const greeting = "Hello";
+const arrayOfChars = [...greeting];
+console.log(arrayOfChars); //  ['H', 'e', 'l', 'l', 'o']
+
+Copy either an object or an array into a separate one
+const fruits1 = ['apples', 'pears']
+const fruits2 = [...fruits]
+fruits1.pop()
+console.log(fruits1, "not", fruits2)
+
+This time, the output is:
+['apples'] 'not' ['apples','pears']

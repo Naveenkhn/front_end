@@ -405,3 +405,122 @@ console.log(fruits1, "not", fruits2)
 
 This time, the output is:
 ['apples'] 'not' ['apples','pears']
+
+JavaScript Modules
+------------------
+Modules allow for code to be reused and more easily replaced.
+Modules were added to ECMAScript ES6 specification  
+To use an ES6 module in a browser, you need to set the script type attribute to “module”
+
+Exporting module features
+The first thing you do to get access to module features is export them. This is done using the export statement.
+
+export const name = "square";
+
+export function draw(ctx, length, x, y, color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(x, y, length, length);
+
+  return { length, x, y, color };
+}
+
+You can export functions, var, let, const, and — as we'll see later — classes. They need to be top-level items; you can't use export inside a function, for example.
+
+A more convenient way of exporting all the items you want to export is to use a single export statement at the end of your module file, followed by a comma-separated list of the features you want to export wrapped in curly braces. For example:
+
+export { name, draw, reportArea, reportPerimeter };
+
+Importing features into your script
+Once you've exported some features out of your module, you need to import them into your script to be able to use them. The simplest way to do this is as follows:
+
+import { name, draw, reportArea, reportPerimeter } from "./modules/square.js";
+
+You use the import statement, followed by a comma-separated list of the features you want to import wrapped in curly braces, followed by the keyword from, followed by the module specifier.
+
+The module specifier provides a string that the JavaScript environment can resolve to a path to the module file. In a browser, this could be a path relative to the site root, which for our basic-modules example would be /js-examples/module-examples/basic-modules
+
+JS DOM
+-------
+The Document Object Model (DOM) is a programming interface for web documents. It represents the page so that programs can change the document structure, style, and content. The DOM represents the document as nodes and objects; that way, programming languages can interact with the page.
+
+For example, the DOM specifies that the querySelectorAll method in this code snippet must return a list of all the <p> elements in the document:
+
+const paragraphs = document.querySelectorAll("p");
+// paragraphs[0] is the first <p> element
+// paragraphs[1] is the second <p> element, etc.
+alert(paragraphs[0].nodeName);
+
+The DOM is not a programming language, but without it, the JavaScript language wouldn't have any model or notion of web pages, HTML documents, SVG documents, and their component parts. The document as a whole, the head, tables within the document, table headers, text within the table cells, and all other elements in a document are parts of the document object model for that document. They can all be accessed and manipulated using the DOM and a scripting language like JavaScript.
+
+Fundamental data types
+----------------------
+Document - When a member returns an object of type document (e.g., the ownerDocument property of an element returns the document to which it belongs), this object is the root document object itself.
+Node - Every object located within a document is a node of some kind. In an HTML document, an object can be an element node but also a text node or attribute node.
+Element - The element type is based on node. It refers to an element or a node of type element returned by a member of the DOM API.
+NodeList - A nodeList is an array of elements, like the kind that is returned by the method document.querySelectorAll().
+Attr - When an attribute is returned by a member (e.g., by the createAttribute() method), it is an object reference that exposes a special (albeit small) interface for attributes. Attributes are nodes in the DOM just like elements are, though you may rarely use them as such.
+NamedNodeMap - A namedNodeMap is like an array, but the items are accessed by name or index, though this latter case is merely a convenience for enumeration, as they are in no particular order in the list.
+
+The following is a brief list of common APIs in web and XML page scripting using the DOM.
+document.querySelector(selector)
+document.querySelectorAll(name)
+document.createElement(name)
+parentNode.appendChild(node)
+element.innerHTML
+element.style.left
+element.setAttribute()
+element.getAttribute()
+element.addEventListener()
+window.content
+Window.onload
+window.scrollTo()
+
+Example :
+Setting text content
+
+HTML
+<div class="container">
+  <textarea class="story"></textarea>
+  <button id="set-text" type="button">Set text content</button>
+  <button id="clear-text" type="button">Clear text content</button>
+</div>
+
+CSS
+.container {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+
+button {
+  width: 200px;
+}
+
+JavaScript
+const story = document.body.querySelector(".story");
+
+const setText = document.body.querySelector("#set-text");
+setText.addEventListener("click", () => {
+  story.textContent = "It was a dark and stormy night...";
+});
+
+const clearText = document.body.querySelector("#clear-text");
+clearText.addEventListener("click", () => {
+  story.textContent = "";
+});
+
+JavaScript Selectors:
+---------------------
+These are nothing but APIs to select fields on DOM
+Example:
+querySelector, querySelectorAll, getElementByID, getElementsByClassName etc
+
+Event Handling :
+----------------
+This can be done in two ways.
+1. HTML Event attributes
+2. Creating Event Listener in JavaScript
+
+
+
+
